@@ -1,1 +1,60 @@
-test
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Summary</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .news-article {
+            border: 1px solid #ddd;
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .news-article img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>News Summary</h1>
+    <div id="news-container"></div>
+    <script>
+        fetch('news_data.json')
+            .then(response => response.json())
+            .then(data => {
+                const newsContainer = document.getElementById('news-container');
+                data.forEach(article => {
+                    const articleDiv = document.createElement('div');
+                    articleDiv.classList.add('news-article');
+                    
+                    const title = document.createElement('h2');
+                    title.textContent = article.title;
+                    
+                    const summary = document.createElement('p');
+                    summary.textContent = article.summary;
+                    
+                    const link = document.createElement('a');
+                    link.href = article.link;
+                    link.textContent = 'Read more';
+                    
+                    const img = document.createElement('img');
+                    img.src = article.image_url;
+                    img.alt = article.title;
+                    
+                    articleDiv.appendChild(title);
+                    articleDiv.appendChild(img);
+                    articleDiv.appendChild(summary);
+                    articleDiv.appendChild(link);
+                    
+                    newsContainer.appendChild(articleDiv);
+                });
+            })
+            .catch(error => console.error('Error fetching news data:', error));
+    </script>
+</body>
+</html>
