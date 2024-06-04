@@ -33,10 +33,7 @@
                     const articleDiv = document.createElement('div');
                     articleDiv.classList.add('news-article');
                     
-                    const title = document.createElement('h2');
-                    title.textContent = article.title;
-                    
-                    const summary = document.createElement('p');
+                    const summary = document.createElement('h2');
                     summary.textContent = article.summary;
                     
                     const link = document.createElement('a');
@@ -45,11 +42,10 @@
                     
                     const img = document.createElement('img');
                     img.src = article.image_url;
-                    img.alt = article.title;
+                    img.alt = article.summary;
                     
-                    articleDiv.appendChild(title);
-                    articleDiv.appendChild(img);
                     articleDiv.appendChild(summary);
+                    articleDiv.appendChild(img);
                     articleDiv.appendChild(link);
                     
                     newsContainer.appendChild(articleDiv);
